@@ -34,7 +34,7 @@
   ansible.builtin.yum:
     name: nginx
     state: installed
-    register: out
+  register: out
 
 
 - name: out
