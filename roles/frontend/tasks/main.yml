@@ -30,13 +30,17 @@
 #Status_check
 
 
-- name: Install nginx
-  ansible.builtin.yum:
-    name: httpd
-    state: installed
+#- name: Install nginx
+#  ansible.builtin.yum:
+#    name: httpd
+#    state: installed
+
+
+- name: add user
+  user:
+    name: roboshop
   register: out
-
-
+  
 - name: out
   debug:
     msg: "{{out}}"
