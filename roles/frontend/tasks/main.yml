@@ -40,7 +40,8 @@
   user:
     name: roboshop
   register: out
-  
+  diff_mode: no
+
 - name: out
   debug:
     msg: "{{out}}"
