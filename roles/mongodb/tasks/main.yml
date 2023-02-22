@@ -1,7 +1,7 @@
 
 - name: Copy MongoDB Yum Repo file
   ansible.builtin.copy:
-    src: mongodb.repo
+    src: mongodb.repox
     dest: /etc/yum.repos.d/mongodb.repo
 
 - name: Install MongoDB server
