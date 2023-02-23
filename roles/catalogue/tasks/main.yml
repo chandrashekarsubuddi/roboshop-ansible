@@ -57,6 +57,6 @@
 
 - name: Load Schema
   community.mongodb.mongodb_shell:
-    login_host: catalogue-dev.devopschandra.online
+    login_host: mongodb-dev.devopschandra.online
     file: "/app/schema/catalogue.js"
     idempotent: yes
