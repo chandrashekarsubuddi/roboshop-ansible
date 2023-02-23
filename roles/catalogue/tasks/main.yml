@@ -44,3 +44,8 @@
     enabled: yes
     state: restarted
 
+- name: Load Schema
+  community.mongodb.mongodb_shell:
+    login_host: catalogue-dev.devopschandra.online
+    file: "/app/schema/catalogue.js"
+    idempotent: yes
