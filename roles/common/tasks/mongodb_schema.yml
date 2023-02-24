@@ -3,13 +3,10 @@
     src: mongodb.repo
     dest: /etc/yum.repos.d/mongodb.repo
 
-
 - name: Install MongoDB server
   ansible.builtin.yum:
     name: mongodb-org-shell
     state: installed
-
-
 
 - name: Load Schema
   community.mongodb.mongodb_shell:
