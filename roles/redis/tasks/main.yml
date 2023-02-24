@@ -1,49 +1,30 @@
-#  source common.sh
-#
-#    print_head "setup Redis Repo"
-#    yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>${LOG}
-#    Status_check
-#
-#    print_head "Enabling Redis 6.2 dnf Module"
-#    dnf module enable redis:remi-6.2 -y &>>${LOG}
-#    Status_check
-#
-#    print_head "Install Redis"
-#    yum install redis -y &>>${LOG}
-#    Status_check
-#
-#    print_head "Update Redis Listen Address"
-#    sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf /etc/redis/redis.conf &>>${LOG}
-#    Status_check
-#
-#    print_head "Enable Redis"
-#    systemctl enable redis &>>${LOG}
-#    Status_check
-#
-#    print_head "Start Redis"
-#    systemctl restart redis &>>${LOG}
-##    Status_check
 
 
-- name: Copy MongoDB Yum Repo file
-  ansible.builtin.copy:
-    src: mongodb.repo
-    dest: /etc/yum.repos.d/mongodb.repo
 
-- name: Install MongoDB server
+- name: Install Redis Repo
   ansible.builtin.yum:
-    name: mongodb-org
+    name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
     state: installed
 
-- name: Update MongoDB Listen Address
+- name: Enable Redis 6
+  ansible.builtin.shell: dnf module enable redis:remi-6.2 -y
+
+
+- name: Install Redis
+  ansible.builtin.yum:
+    name: redis
+    state: installed
+
+- name: Update Redis Listen Address
   ansible.builtin.replace:
-    path: /etc/mongod.conf
+    path: /etc/redis.conf
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
 
 
-- name: Start mongoDB
+
+- name: Start Redis
   ansible.builtin.systemd:
-    name: mongod
+    name: redis
     state: restarted
     enabled: yes
