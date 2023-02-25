@@ -11,4 +11,4 @@
   ansible.builtin.shell: yum install mysql -y
 
 - name: Load Schema
-  ansible.builtin.shell: mysql -h mysql-dev.devopschandra.online -uroot -p${root_mysql_password} < /app/schema/shipping.sql
+  ansible.builtin.shell: mysql -h mysql-dev.devopschandra.online -uroot -p{{root_mysql_password}} < /app/schema/shipping.sql
