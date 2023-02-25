@@ -1,14 +1,19 @@
-#print_head "Install MySQL Client"
-#yum install mysql -y &>>${LOG}
-#Status_check
 #
-#print_head "Load Schema"
-#mysql -h mysql-dev.devopschandra.online -uroot -p${root_mysql_password} < /app/schema/shipping.sql
-##Status_check
+#
+#- name: Install MySQL Client
+#  ansible.builtin.shell: yum install mysql -y
+#
+#- name: Load Schema
+#  ansible.builtin.shell: mysql -h mysql-dev.devopschandra.online -uroot -p{{root_mysql_password}} < /app/schema/shipping.sql
 
+#Just i written my own way above commands thats why they are commented above commands are working fine.
 
-- name: Install MySQL Client
-  ansible.builtin.shell: yum install mysql -y
+- name: Load MySQL Schema
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    target: /app/schema/{{component}}.sql
+    login_host: mysql-dev.devopschandra.online
+    login_user: root
+    login_password: "{{root_mysql_password}}"
 
-- name: Load Schema
-  ansible.builtin.shell: mysql -h mysql-dev.devopschandra.online -uroot -p{{root_mysql_password}} < /app/schema/shipping.sql
