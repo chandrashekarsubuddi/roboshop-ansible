@@ -8,6 +8,12 @@
 
 #Just i written my own way above commands thats why they are commented above commands are working fine.
 
+- name: Install Python deps
+  ansible.builtin.yum:
+    name: python3-PyMySQL
+    state: installed
+
+
 - name: Load MySQL Schema
   community.mysql.mysql_db:
     state: import
