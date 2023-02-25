@@ -26,7 +26,7 @@
 
 - name: Copy App file to App location
   ansible.builtin.copy:
-    src: target/{{component}}-1.0.jar
+    src: /app/target/{{component}}-1.0.jar
     dest: /app/{{component}}.jar
     remote_src: yes
 
