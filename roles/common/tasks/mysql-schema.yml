@@ -1,0 +1,14 @@
+#print_head "Install MySQL Client"
+#yum install mysql -y &>>${LOG}
+#Status_check
+#
+#print_head "Load Schema"
+#mysql -h mysql-dev.devopschandra.online -uroot -p${root_mysql_password} < /app/schema/shipping.sql
+##Status_check
+
+
+- name: Install MySQL Client
+  ansible.builtin.shell: yum install mysql -y
+
+- name: Load Schema
+  ansible.builtin.shell: mysql -h mysql-dev.devopschandra.online -uroot -p${root_mysql_password} < /app/schema/shipping.sql
