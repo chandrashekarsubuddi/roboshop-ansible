@@ -28,6 +28,7 @@
   ansible.builtin.copy:
     src: target/{{component}}-1.0.jar
     dest: /app/{{component}}.jar
+    remote_src: yes
 
 - name: SystemD Setup
   ansible.builtin.include_tasks: "systemd.yml"
