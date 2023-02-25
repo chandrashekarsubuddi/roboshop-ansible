@@ -20,15 +20,17 @@
   ansible.builtin.include_tasks: "app-prereq.yml"
 
 - name: Maven Build
-  ansible.builtin.shell: mvn clean package
+  ansible.builtin.shell: mvn clean package ;  mv target/{{component}}-1.0.jar {{component}}.jar
   args:
     chdir: /app
 
-- name: Copy App file to App location
-  ansible.builtin.copy:
-    src: /app/target/{{component}}-1.0.jar
-    dest: /app/{{component}}.jar
-    remote_src: yes
+#this code written by me
+#- name: Copy App file to App location
+#  ansible.builtin.copy:
+#    src: /app/target/{{component}}-1.0.jar
+#    dest: /app/{{component}}.jar
+#    remote_src: yes
+#this code written by me
 
 - name: SystemD Setup
   ansible.builtin.include_tasks: "systemd.yml"
