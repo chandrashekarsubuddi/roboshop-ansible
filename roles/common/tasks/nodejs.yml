@@ -6,7 +6,7 @@
   ansible.builtin.yum:
     name: nodejs
     state: installed
-    
+
 - name: App Pre-Req
   ansible.builtin.include_tasks: "app-prereq.yml"
 
