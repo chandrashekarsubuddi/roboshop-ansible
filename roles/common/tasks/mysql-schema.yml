@@ -24,4 +24,6 @@
     login_host: mysql-dev.devopschandra.online
     login_user: root
     login_password: "{{root_mysql_password}}"
+    vars:
+      root_mysql_password: "${{ lookup('aws_ssm', '{{env}}.mysql.DB_ADMIN_PASS', region='us-east-1' ) }}"
 
